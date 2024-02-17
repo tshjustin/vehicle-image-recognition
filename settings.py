@@ -4,6 +4,6 @@ import os
 load_dotenv(find_dotenv()) # Load Env keys 
 
 # General 
-AUTH_HEADERS - {
+AUTH_HEADERS = {
     "AccountKey": os.getenv('LTA_API_KEY')
 }
