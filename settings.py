@@ -1,6 +1,6 @@
 from dotenv import load_dotenv, find_dotenv
-import os 
 import logging 
+import os 
 
 load_dotenv(find_dotenv()) # Load Env keys 
 
@@ -13,9 +13,12 @@ def get_logger(name):
 # URLS 
 LTA_TRAFFIC_URL = 'https://api.data.gov.sg/v1/transport/traffic-images'
 
-# General 
-AUTH_HEADERS = {
-    "AccountKey": os.getenv('LTA_API_KEY')
-}
-
+# Folders
 DOWNLOAD_FOLDER = 'assests'
+
+# Roboflow Annotated Data 
+ROBOFLOW_API_KEY = os.environ.get('ROBOFLOW_API_KEY')
+ROBOFLOW_WORKSPACE = os.environ.get('ROBOFLOW_WORKSPACE')
+ROBOFLOW_PROJECT = os.environ.get('ROBOFLOW_PROJECT')
+ROBOFLOW_VERSION = int(os.environ.get('ROBOFLOW_VERSION'))
+ROBOFLOW_DIR = os.path.join(os.getcwd(), f'{ROBOFLOW_PROJECT}-{ROBOFLOW_VERSION}')

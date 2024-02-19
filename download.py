@@ -42,14 +42,14 @@ def download(url: str):
         if not os.path.exists(DOWNLOAD_FOLDER):
             os.mkdir(DOWNLOAD_FOLDER)
 
-        with open(f'{DOWNLOAD_FOLDER}/{url.split("/")[-1]}', 'wb') as handler:
+        with open(f'{DOWNLOAD_FOLDER}/{url.split("/")[-1]}', 'wb') as handler: # Images in JPEG - Work with binary data 
             handler.write(img_data)
     except Exception as e:
         logger.error(e)
     
 def loop(n: int=50):
     '''
-    Downloads batches of Data from API at different timings for a diverse Dataset 
+    Downloads batches of Data from API
     '''
     count = 1 
     response = requests.get(LTA_TRAFFIC_URL) 
