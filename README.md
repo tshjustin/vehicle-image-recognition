@@ -1,10 +1,10 @@
 ## Traffic Images Vehicle Detection 
 
-# Workflow 
+### Training of Model 
 ![image](https://github.com/tshjustin/vehicle-image-recognition/assets/122602657/4abbeac3-b411-440e-b571-b0de2bf15f7c)
 
 <ul>
-<li>Traffic Images downloaded from API and annotated using Roboflow, which is then exported for training of model/li>
+<li>Traffic Images downloaded from API and annotated using Roboflow, which is then exported for training of model</li>
 <li>Import pre-trained model forom YoloV8 and fined-tuned (train) with exported data, then exported in ONNX Format</li>
 <li>Prepare ONNX model for inference </li>
 </ul>
