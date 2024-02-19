@@ -1,13 +1,16 @@
-# Singapore Traffic Images Vehicle Detection 
+## Traffic Images Vehicle Detection 
 
 # Workflow 
+![image](https://github.com/tshjustin/vehicle-image-recognition/assets/122602657/4abbeac3-b411-440e-b571-b0de2bf15f7c)
 
-1. Using Roboflow - Images that are queired from LTA API are downloaded and formatted to fit into the format accepted by Roboflow 
+<ul>
+<li>Traffic Images downloaded from API and annotated using Roboflow, which is then exported for training of model/li>
+<li>Import pre-trained model forom YoloV8 and fined-tuned (train) with exported data, then exported in ONNX Format</li>
+<li>Prepare ONNX model for inference </li>
+</ul>
 
-2. Images are labelled and annotated individually for the model to learn from. 
-
-3. Using a pre-trained model from YoloV8, Images are fed and used to train it. Model is then tested using test data. 
-
-4. Model is then exported in ONNX format that is viable across differnet platforms and prepared for inference. 
-
-[![Tech Stack](https://skillicons.dev/icons?i=opencv,py)](https://skillicons.dev)
+| Tools      | Description |
+| ----------- | ----------- |
+| Roboflow      | Computer vision framework for data collection, annotation, preprocessing and augementation. Supports custom datasets and smart labeling with pre-trained model on COCO (Common Objects in Context).       |
+| YoloV8   | Pre-trained model that comes with different weights and sparcity of model. Model can be imported and fined-tuned with custom dataset for specific use cases.        |
+| ONNX   | Intermediary Machine Learning framework to convert between different ML frameworks to deploy accross differnet platforms.        |
