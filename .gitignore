@@ -1,4 +1,8 @@
 .env
 venv/
 __pycache__/
-assests/ 
+assests/  
+
+Traffic-Images-Detection=1/data.yml
+
+runs/detect/train/args

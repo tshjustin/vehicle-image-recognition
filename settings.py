@@ -22,3 +22,7 @@ ROBOFLOW_WORKSPACE = os.environ.get('ROBOFLOW_WORKSPACE')
 ROBOFLOW_PROJECT = os.environ.get('ROBOFLOW_PROJECT')
 ROBOFLOW_VERSION = int(os.environ.get('ROBOFLOW_VERSION'))
 ROBOFLOW_DIR = os.path.join(os.getcwd(), f'{ROBOFLOW_PROJECT}-{ROBOFLOW_VERSION}')
+
+# ONNX 
+ONNX_MODEL = 'models/yolov8n.onnx'
+CONF_THRESHOLD = 0.3
