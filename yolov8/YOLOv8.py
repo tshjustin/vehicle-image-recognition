@@ -2,9 +2,9 @@ import time
 import cv2
 import numpy as np
 import onnxruntime
-from settings import CONF_THRESHOLD, ONNX_MODEL
 
 from yolov8.utils import xywh2xyxy, draw_detections, multiclass_nms
+from settings import ONNX_MODEL, CONF_THRESHOLD
 
 class YOLOv8:
 
@@ -68,7 +68,7 @@ class YOLOv8:
         scores = scores[scores > self.conf_threshold]
 
         if len(scores) == 0:
-            return [], [], []
+            return np.array([]), np.array([]), np.array([])
 
         # Get the class with the highest confidence
         class_ids = np.argmax(predictions[:, 4:], axis=1)
@@ -102,7 +102,7 @@ class YOLOv8:
         boxes *= np.array([self.img_width, self.img_height, self.img_width, self.img_height])
         return boxes
 
-    def draw_detections(self, image, draw_scores=True, mask_alpha=0.4):
+    def draw_detections(self, image, draw_scores=True, mask_alpha=0.1):
 
         return draw_detections(image, self.boxes, self.scores,
                                self.class_ids, mask_alpha)
@@ -119,9 +119,9 @@ class YOLOv8:
         model_outputs = self.session.get_outputs()
         self.output_names = [model_outputs[i].name for i in range(len(model_outputs))]
 
-# Initialize the image detector useing YoloV8 model in ONNX 
+
 yolov8_detector = YOLOv8(
     ONNX_MODEL, 
-    conf_thres=CONF_THRESHOLD,  # Account for blurred images that are fed for inference 
-    iou_thres=0.3 # Ensure that each object is detected & reported once 
+    conf_thres=CONF_THRESHOLD, 
+    iou_thres=0.3
 )

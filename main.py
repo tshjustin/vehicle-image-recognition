@@ -3,7 +3,7 @@ import time
 
 from yolov8.YOLOv8 import yolov8_detector
 
-IMG_PATH = 'assests/7bf0ca92-a3a6-4b15-9e87-b8e6d13439b5.jpg'
+IMG_PATH = 'assests/0cab740a-752c-4bde-a15e-8ead129afce0.jpg'
 
 if __name__ == '__main__':
     # Read image
