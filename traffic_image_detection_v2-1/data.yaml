@@ -1,0 +1,23 @@
+names:
+
+- vehicles
+
+nc: 1
+
+roboflow:
+
+  license: CC BY 4.0
+
+  project: traffic_image_detection_v2
+
+  url: https://universe.roboflow.com/justin-xu5tl/traffic_image_detection_v2/dataset/1
+
+  version: 1
+
+  workspace: justin-xu5tl
+
+test: c:\Users\jtann\OneDrive\Desktop\Vehicle-Image-Recognition\traffic_image_detection_v2-1\test\images
+
+train: c:\Users\jtann\OneDrive\Desktop\Vehicle-Image-Recognition\traffic_image_detection_v2-1\train\images
+
+val: c:\Users\jtann\OneDrive\Desktop\Vehicle-Image-Recognition\traffic_image_detection_v2-1\valid\images

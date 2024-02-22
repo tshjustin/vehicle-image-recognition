@@ -3,6 +3,6 @@ venv/
 __pycache__/
 assests/  
 
-Traffic-Images-Detection=1/data.yml
+traffic_image_detection_v2-1/data.yml
 
-runs/detect/train/args
+runs\detect\args.yml

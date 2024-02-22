@@ -1,7 +1,7 @@
 task: detect
 mode: train
 model: models/yolov8n.pt
-data: c:\Users\jtann\OneDrive\Desktop\Vehicle-Image-Recognition\traffic-images-detection-1/data.yaml
+data: c:\Users\jtann\OneDrive\Desktop\Vehicle-Image-Recognition\traffic_image_detection_v2-1/data.yaml
 epochs: 100
 patience: 50
 batch: 16

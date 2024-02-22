@@ -49,7 +49,6 @@ class YoloV8Model:
         path = self.model.export(format="onnx")
         logger.info(f'Saved ONNX model to {path}')
 
-
 if __name__ == '__main__':
     model = YoloV8Model('models/yolov8n.pt')  # Loads the pre-trained model that is obtained from YoloV8 GitHub
     model.train()

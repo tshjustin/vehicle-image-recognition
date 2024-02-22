@@ -2,10 +2,10 @@ import numpy as np
 import cv2
 from typing import Tuple
 
-class_names = ['vehicle']
+class_names = ['vehicles']
 
 # Create a list of colors for each class where each color is a tuple of 3 integer values
-rng = np.random.default_rng(5)
+rng = np.random.default_rng(3)
 colors = rng.uniform(0, 255, size=(len(class_names), 3))
 
 
