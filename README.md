@@ -13,7 +13,7 @@
 | ----------- | ----------- |
 | Roboflow      | Computer vision framework for data collection, annotation, preprocessing and augementation. Supports custom datasets and smart labeling with pre-trained model on COCO (Common Objects in Context).       |
 | YoloV8   | Pre-trained model that comes with different weights and sparcity of model. Model can be imported and fined-tuned with custom dataset for specific use cases.        |
-| ONNX   | Intermediary Machine Learning framework to convert between different ML frameworks to deploy accross differnet platforms.        |
+| ONNX   | Intermediary Machine Learning framework to convert between different ML frameworks to deploy accross differnet platforms. ONNX was used for easy deployment to Render cloud hosting & for comparison of model in different frameworks for a common platform.  |
 
 ### Outcomes
 
