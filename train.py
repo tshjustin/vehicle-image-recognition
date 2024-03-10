@@ -50,6 +50,6 @@ class YoloV8Model:
         logger.info(f'Saved ONNX model to {path}')
 
 if __name__ == '__main__':
-    model = YoloV8Model('models/yolov8n.pt')  # Loads the pre-trained model that is obtained from YoloV8 GitHub
+    model = YoloV8Model('models/yolov8n.pt')  # Loads the pre-trained model from ultralytics
     model.train()
     model.save()

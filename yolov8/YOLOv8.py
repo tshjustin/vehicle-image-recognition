@@ -15,7 +15,7 @@ class YOLOv8:
         # Initialize model
         self.initialize_model(path)
 
-    def __call__(self, image):
+    def __call__(self, image): # forward pass 
         return self.detect_objects(image)
 
     def initialize_model(self, path):
@@ -37,23 +37,25 @@ class YOLOv8:
         return self.boxes, self.scores, self.class_ids
 
     def prepare_input(self, image):
-        self.img_height, self.img_width = image.shape[:2]
+        '''
+        Nano model accepts a 640 pixel input 
+        
+        '''
+        self.img_height, self.img_width = image.shape[:2] # get height and width of image 
 
-        input_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        input_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # RBG format for CV2 
+        
+        input_img = cv2.resize(input_img, (self.input_width, self.input_height)) # 
 
-        # Resize input image
-        input_img = cv2.resize(input_img, (self.input_width, self.input_height))
-
-        # Scale input pixel values to 0 to 1
-        input_img = input_img / 255.0
-        input_img = input_img.transpose(2, 0, 1)
-        input_tensor = input_img[np.newaxis, :, :, :].astype(np.float32)
+        input_img = input_img / 255.0 # Scale input pixel values to 0 to 1
+        input_img = input_img.transpose(2, 0, 1) # HWC -> CHW
+        input_tensor = input_img[np.newaxis, :, :, :].astype(np.float32) # Adds batch dimension 
 
         return input_tensor
 
 
     def inference(self, input_tensor):
-        start = time.perf_counter()
+        # start = time.perf_counter()
         outputs = self.session.run(self.output_names, {self.input_names[0]: input_tensor})
 
         # print(f"Inference time: {(time.perf_counter() - start)*1000:.2f} ms")
@@ -83,27 +85,27 @@ class YOLOv8:
         return boxes[indices], scores[indices], class_ids[indices]
 
     def extract_boxes(self, predictions):
-        # Extract boxes from predictions
-        boxes = predictions[:, :4]
+        # Extract boxes from predictions - First 4 column of each row 
+        boxes = predictions[:, :4] # center of bounding box (x,y) , along with the height and width - 
 
         # Scale boxes to original image dimensions
         boxes = self.rescale_boxes(boxes)
 
-        # Convert boxes to xyxy format
-        boxes = xywh2xyxy(boxes)
+        boxes = xywh2xyxy(boxes) # (center x, center y, width, height) -> (top left x, top left y, bottom right x, bottom right y)
 
         return boxes
 
     def rescale_boxes(self, boxes):
-
-        # Rescale boxes to original image dimensions
+        '''
+        Match dimension of input image 
+        '''
         input_shape = np.array([self.input_width, self.input_height, self.input_width, self.input_height])
         boxes = np.divide(boxes, input_shape, dtype=np.float32)
         boxes *= np.array([self.img_width, self.img_height, self.img_width, self.img_height])
         return boxes
 
     def draw_detections(self, image, draw_scores=True, mask_alpha=0.1):
-
+        
         return draw_detections(image, self.boxes, self.scores,
                                self.class_ids, mask_alpha)
 

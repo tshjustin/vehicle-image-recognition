@@ -10,8 +10,11 @@ colors = rng.uniform(0, 255, size=(len(class_names), 3))
 
 
 def nms(boxes, scores, iou_threshold):
-    # Sort by score
-    sorted_indices = np.argsort(scores)[::-1]
+    '''
+    Non maxima suppression:  
+    Reduces the number of overlapping bounding boxes to keep only the best ones. Sorts boxes based on their scores, removes boxes with high Intersection over Union (IoU)
+    '''
+    sorted_indices = np.argsort(scores)[::-1] # sort scores 
 
     keep_boxes = []
     while sorted_indices.size > 0:
@@ -31,6 +34,9 @@ def nms(boxes, scores, iou_threshold):
     return keep_boxes
 
 def multiclass_nms(boxes, scores, class_ids, iou_threshold):
+    ''''
+    Calculate NMS between different classes that are defined.
+    '''
 
     unique_class_ids = np.unique(class_ids)
 
@@ -46,6 +52,11 @@ def multiclass_nms(boxes, scores, class_ids, iou_threshold):
     return keep_boxes
 
 def compute_iou(box, boxes):
+    '''
+    Computes the intersection of union. 
+    
+    We want the AREA of the intersecting rectangle, Thus we want Max starting pos (min y & x) * Min ending pos (max y & x)
+    '''
     # Compute xmin, ymin, xmax, ymax for both boxes
     xmin = np.maximum(box[0], boxes[:, 0])
     ymin = np.maximum(box[1], boxes[:, 1])
@@ -117,6 +128,9 @@ def draw_text(image: np.ndarray, text: str, box: np.ndarray, color: Tuple[int, i
     return cv2.putText(image, text, (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, font_size, (255, 255, 255), text_thickness, cv2.LINE_AA)
 
 def draw_masks(image: np.ndarray, boxes: np.ndarray, classes: np.ndarray, mask_alpha: float = 0.3) -> np.ndarray:
+    '''
+    Adds mask - Area of interest
+    '''
     mask_img = image.copy()
 
     # Draw bounding boxes and labels of detections
